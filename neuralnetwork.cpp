@@ -169,8 +169,10 @@ public:
 		}
 
 		train_set_size = number_of_train_imgs;
+		traindata = new data[number_of_train_imgs];
 		traindata = train_data;
 		test_set_size = number_of_test_imgs;
+		testdata = new data[number_of_test_imgs];
 		testdata = test_data;
 
 		for (int i =0 ;i<train_set_size;i++)
@@ -178,15 +180,17 @@ public:
 
 		//initialising test activations
 		cout<<"Initialising test_activations\n";
-		test_activations = (double ***) malloc((num_layers+2)*sizeof(double **));
+		test_activations = new double**[num_layers+2];
 		for(int i = 0; i<=(num_layers+1) ; i++)
 		{
+			cout<<i<<" layer added";
 			test_activations[i] = (double **) malloc(net->sizes[i]*sizeof(double*));
 			for(int j=0; j< net->sizes[i] ; j++)
 			{
 				test_activations[i][j] = (double *) malloc((number_of_test_imgs)*sizeof(double));
 			}
 		}
+		cout<<"Initialising test_activations\n";
 		for(int i=0; i< number_of_test_imgs; i++)
 		{
 			for (int j = 0; j <IMG_SIZE; j++)
