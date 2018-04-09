@@ -55,6 +55,7 @@ void readdata()
 			file>>testdata[i].y[j];
 		}
 	}
+	
 	file.close();
 
 }
