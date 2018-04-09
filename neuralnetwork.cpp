@@ -107,6 +107,7 @@ public:
 	neuralnetwork(int num_layers,int *sizes, int number_of_train_imgs, data *train_data,int number_of_test_imgs, data *test_data,int bsize)
 	{
 		srand(time(NULL));
+		net = new network();
 		net->num_layers = num_layers;
 		blocksize = bsize;
 
