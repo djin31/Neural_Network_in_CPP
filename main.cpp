@@ -62,14 +62,14 @@ void readdata()
 int main(int argc, char const *argv[])
 {
 	int *sizes = new int[1];
-	sizes[0]=32;
+	sizes[0]=15;
 	cout<<"Loading data\n";
 	double t = omp_get_wtime();
 	readdata(); 
 	cout<<"Loaded data in "<<omp_get_wtime()-t<<endl;
 	cout<<"Configuring neural network\n";
-	neuralnetwork mynetwork = neuralnetwork(1,sizes,5000,traindata,1000,testdata,32);
+	neuralnetwork mynetwork = neuralnetwork(1,sizes,50000,traindata,100,testdata,512);
 	cout<<"Configuring sgd\n";
-	mynetwork.SGD(10,500,0.01);
+	mynetwork.SGD(10,500,1);
 	return 0;
 }
