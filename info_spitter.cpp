@@ -64,7 +64,7 @@ int main(int argc, char const *argv[])
 	int *sizes = new int[1];
 	sizes[0]=15;
 	readdata(); 	
-	neuralnetwork mynetwork = neuralnetwork(1,sizes,50000,traindata,100,testdata,512);
+	neuralnetwork mynetwork = neuralnetwork(1,sizes,49920,traindata,100,testdata,512);
 	mynetwork.SGD(5,1,1);
 	mynetwork.SGD(5,4,1);
 	mynetwork.SGD(5,16,1);

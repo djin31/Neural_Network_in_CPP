@@ -208,15 +208,15 @@ class neuralnetwork
 		double t1 = omp_get_wtime();
 		for (int i = 0; i <= (net->num_layers); i++)
 		{
-			t1 = omp_get_wtime();
 			MatMul(net->sizes[i + 1], net->sizes[i], number_of_imgs, blocksize, net->weights[i], activations[i], activations[i + 1]);
-			mat_mul_time += omp_get_wtime() - t1;
+			
 			for (int j = 0; j < net->sizes[i + 1]; j++)
 			{
 				for (int k = 0; k < number_of_imgs; k++)
 					activations[i + 1][j][k] = sigmoid(activations[i + 1][j][k] + net->biases[i][j]);
 			}
 		}
+		mat_mul_time += omp_get_wtime() - t1;
 	}
 
 	void cost_derivative()
@@ -414,7 +414,7 @@ class neuralnetwork
 				update_mini_batch();
 			}
 			epoch_time = omp_get_wtime() - epoch_time;
-			cout <<Experiment<<","<<num_threads<<","<<mini_batch_size<<","<< i << epoch_time <<","<< mat_mul_time << endl;
+			cout <<Experiment<<","<<num_threads<<","<<mini_batch_size<<","<< i <<","<< epoch_time <<","<< mat_mul_time << endl;
 		}
 	}
 };

@@ -194,8 +194,7 @@ class neuralnetwork
 				test_activations[0][j][i] = testdata[i].x[j];
 			}
 		}
-		//for (int j = 0; j <IMG_SIZE; j++)
-		//	cout<<test_activations[0][j][0]<<" ";
+
 	}
 
 	void feedforward(double ***activations, int number_of_imgs)
@@ -241,6 +240,7 @@ class neuralnetwork
 			cout<<net->derivatives[0][i][0]<<endl;
 		}*/
 
+		
 		for (int n = 0; n < (num_layers + 1); n++)
 		{
 			for (int p = 0; p < (net->sizes[n + 1]); p++)
@@ -254,6 +254,7 @@ class neuralnetwork
 		}
 		//cout<<net->delta_biases[1][5];
 
+		
 		for (int n = 0; n < (num_layers + 1); n++)
 		{
 			for (int p = 0; p < (net->sizes[n + 1]); p++)
@@ -295,10 +296,11 @@ class neuralnetwork
 				}
 			}
 		}
-		/*for(int i=0;i<10;i++)
+		for (int i =0 ;i<10;i++)
 		{
-			cout<<net->weights[1][0][i]<<endl;
-		}*/
+			cout<<net->weights[1][0][i]<<" ";
+		}
+		cout<<endl;
 	}
 
 	int evaluate()
@@ -327,13 +329,10 @@ class neuralnetwork
 			if (tv == mv)
 			{
 				c++;
-				cout << tv << endl;
+				//cout << tv << endl;
 			}
 		}
-		for (int i = 0; i < 10; i++)
-		{
-			cout << net->derivatives[0][i][0] << " " << net->derivatives[1][i][0] << endl;
-		}
+		
 		return c;
 	}
 
