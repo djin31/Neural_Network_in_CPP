@@ -12,8 +12,8 @@
 
 using namespace std;
 
-int Experiment = 1;
-int num_threads = 4;
+int Experiment = 2;
+int num_threads = 2;
 double epoch_time = 0;
 double mat_mul_time = 0;
 
@@ -232,7 +232,6 @@ class neuralnetwork
 				net->derivatives[num_layers][p][i] = 2 * (train_activations[num_layers + 1][p][i] - train_results[p][i]) * ((train_activations[num_layers + 1][p][i]) * (1 - train_activations[num_layers + 1][p][i]));
 			}
 		}
-			t1 = omp_get_wtime();
 
 		for (int n = (num_layers - 1); n >= 0; n--)
 		{
@@ -267,8 +266,11 @@ class neuralnetwork
 		}
 		//cout<<net->delta_biases[1][5];
 
+		t1 = omp_get_wtime();
+
 		for (int n = 0; n < (num_layers + 1); n++)
 		{
+			#pragma omp parallel for
 			for (int p = 0; p < (net->sizes[n + 1]); p++)
 			{
 				for (int q = 0; q < net->sizes[n]; q++)
@@ -281,6 +283,8 @@ class neuralnetwork
 				}
 			}
 		}
+			mat_mul_time += omp_get_wtime() - t1;
+		
 	}
 
 	void update_mini_batch()

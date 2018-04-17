@@ -231,7 +231,7 @@ class neuralnetwork
 					temp = 0;
 					for (int k = 0; k < (net->sizes[n + 2]); k++)
 						temp += (net->derivatives[n + 1][k][i] * net->weights[n + 1][k][p]);
-					net->derivatives[n][p][i] = temp * (train_activations[n + 1][p][i]) * (1 - train_activations[n + 1][p][i]);
+					net->derivatives[n][p][i] = temp * (train_activations[n+1][p][i]) * (1 - train_activations[n +1][p][i]);
 				}
 			}
 		}
